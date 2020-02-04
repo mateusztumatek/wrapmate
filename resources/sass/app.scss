@@ -4,15 +4,15 @@
 
 @import "https://fonts.googleapis.com/css?family=Raleway:300,400,700,900&display=swap";
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
-@import "~vue-material/dist/theme/engine"; // Import the theme engine
+@import "../../node_modules/vue-material/dist/theme/engine"; // Import the theme engine
 
 @include md-register-theme("default", (
         primary: $primary-color, // The primary color of your brand
 ));
 
-@import "~vue-material/dist/theme/all"; // Apply the theme
+@import "../../node_modules/vue-material/dist/theme/all"; // Apply the theme
 
 @import "./custom";
 

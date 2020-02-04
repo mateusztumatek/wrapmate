@@ -1,10 +1,8 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-    <div class="w-100 text-center">
+<nav class="navbar navbar-expand-md navbar-light shadow-sm">
+    <div class="container my-container sm-text-center">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img itemtype="http://schema.org/Brand" class="logo" src="{{url('/storage/'.setting('site.logo'))}}">
+            <img class="logo" src="{{url('/storage/'.setting('site.logo'))}}">
         </a>
-    </div>
-    <div class="container sm-text-center">
         {{--<button class="navbar-toggler m-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>--}}
@@ -15,7 +13,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             {{menu('home', 'bootstrap')}}
-            <div class="switcher">
+       {{--     <div class="switcher">
                 <div class="language">
                     <a data-toggle="collapse" href="#language-toggle" role="button" aria-expanded="false" aria-controls="language-toggle">
                         @php
@@ -39,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--}}
             <!-- Right Side Of Navbar -->
            {{-- <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->

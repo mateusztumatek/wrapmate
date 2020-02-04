@@ -2,25 +2,23 @@ $(document).ready(() => {
 
     $(window).scroll(function (event) {
         var scroll = $(window).scrollTop();
-        if(scroll > 300){
+        if(scroll > 0){
             $('.navbar').addClass('scrolled');
-            $('body').css('margin-top', $('.navbar').height());
         }else{
-            if($('.navbar').hasClass('scrolled')){
-                $('.navbar').addClass('hide-scroll');
-            }
-            if(scroll == 0){
-                $('.navbar').removeClass('scrolled hide-scroll');
-                $('body').css('margin-top', '0px');
-            }
             $('.navbar').removeClass('scrolled');
-
         }
         // Do something
     });
     $('.description-content').each((item) => {
         console.log('item');
     })
+    //Smooth scrolling with links
+    $('a[href*=\\#]').on('click', function(event){
+        console.log('DUPA');
+        event.preventDefault();
+        $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
+    });
+
     $('.switcher').addClass('show-switcher');
 })
 window.showDescription = () => {

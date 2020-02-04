@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "87aeb536fcebc0d4895be483d44b5610",
+    "content-hash": "41ccc1009ccf9f89b4ec46c2b24c392d",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -4249,6 +4249,51 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2017-11-27T11:13:29+00:00"
+        },
+        {
+            "name": "tpay-com/tpay-openapi-php",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tpay-com/tpay-openapi-php.git",
+                "reference": "801f42ac626d88a1f840dd6daf01b469e2b38ade"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tpay-com/tpay-openapi-php/zipball/801f42ac626d88a1f840dd6daf01b469e2b38ade",
+                "reference": "801f42ac626d88a1f840dd6daf01b469e2b38ade",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "extra": [
+                {
+                    "engine": "PHP SDK"
+                }
+            ],
+            "autoload": {
+                "psr-4": {
+                    "tpaySDK\\": ""
+                },
+                "exclude-from-classmap": [
+                    "**/Examples/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Tpay",
+                    "homepage": "https://tpay.com"
+                }
+            ],
+            "description": "Tpay OpenAPI library",
+            "time": "2019-11-25T13:32:13+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

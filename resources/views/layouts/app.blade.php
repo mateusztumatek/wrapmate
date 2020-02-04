@@ -41,11 +41,12 @@
 <body style="background-color: transparent; overflow-x: hidden">
     <div id="app" style="overflow-x: hidden">
         @include('layouts.header')
-
+        @include('layouts.carousel')
         <main class="pb-4">
             @yield('content')
         </main>
         @include('layouts.footer')
+        <message-component v-cloak></message-component>
     </div>
 </body>
 <script>
@@ -62,3 +63,4 @@
 </script>
 @yield('js')
 </html>
+

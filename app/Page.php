@@ -8,7 +8,7 @@ use TCG\Voyager\Traits\Translatable;
 class Page extends Model
 {
     use Translatable;
-    protected $fillable = ['parent_id', 'title', 'page_description', 'content', 'image', 'active', 'slug', 'banner_title', 'banner_description', 'banner_redirect'];
+    protected $fillable = ['parent_id', 'title', 'page_description', 'content', 'image', 'active', 'slug', 'banner_title', 'banner_description', 'banner_redirect', 'display_gallery', 'data'];
     protected $translatable = ['page_description', 'title', 'content'];
 
     public function parent(){

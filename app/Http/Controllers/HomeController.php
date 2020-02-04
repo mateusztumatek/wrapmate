@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\BagColor;
-use App\BagConfig;
+use App\Faq;
 use App\Mail;
+use App\Page;
 use App\Po;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
@@ -26,16 +27,28 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function contact(Request $request){
+        $page = Page::where('slug', 'kontakt')->first();
+        if(!$page) return Redirect::back()->withErrors(['Nie ma takiej strony']);
+        $faqs = Faq::all();
+        $faqs = $faqs->groupBy('group');
+
+        return view('page.contact', compact('page', 'faqs'));
+    }
     public function index()
     {
-        $color_config = BagColor::whereDoesntHave('pages')->get();
-        $banner = Po::where('type', 'home')->first();
-        $banner = $banner->translate(App::getLocale(), 'pl');
+
+
         $info_post = Po::where('type', 'home_info')->first();
-        $info_post = $info_post->translate(App::getLocale(), 'pl');
+        if($info_post){
+            $info_post = $info_post->translate(App::getLocale(), 'pl');
+        }
+
         $posts = Po::where('type', 'home_posts')->whereDoesntHave('pages')->take(3)->get();
         $posts = $posts->translate(App::getLocale(), 'pl');
-        return view('home', compact('banner', 'posts', 'info_post', 'color_config'));
+        $second_post = Po::where('type', 'home_info')->first();
+        if($second_post) $second_post->translate(App::getLocale(), 'pl');
+        return view('home', compact('banner', 'posts', 'second_post'));
     }
 
     public function sendEmail(Request $request){
@@ -53,5 +66,14 @@ class HomeController extends Controller
             $q->where('page_id', $request->page_id);
         })->get();
         return response()->json($colors);
+    }
+    public function message(Request $request){
+        $request->validate([
+            'topic' => 'required',
+            'email' => 'required|email',
+            'content' => 'required|min:3'
+        ]);
+        \Illuminate\Support\Facades\Mail::to(setting('site.email'))->send(new Mail\ContactMail($request->all()));
+        return response()->json(true);
     }
 }

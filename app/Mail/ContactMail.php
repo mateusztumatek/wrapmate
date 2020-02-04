@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
-    protected  $name, $email, $content;
+    protected  $topic, $email, $content;
     /**
      * Create a new message instance.
      *
@@ -18,9 +18,9 @@ class ContactMail extends Mailable
      */
     public function __construct($data)
     {
-        $this->name = $data->name;
-        $this->email = $data->email;
-        $this->content = $data->content;
+        $this->topic = $data['topic'];
+        $this->email = $data['email'];
+        $this->content = $data['content'];
     }
 
     /**
@@ -30,6 +30,6 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->from($this->email)->subject('Kontakt ze strony'. config('app.name'))->view('mails.contact')->with(['name' => $this->name, 'email' => $this->email, 'content' => $this->content]);
+        return $this->from($this->email)->subject('Kontakt ze strony'. config('app.name'))->view('mails.contact')->with(['topic' => $this->topic, 'email' => $this->email, 'content' => $this->content]);
     }
 }

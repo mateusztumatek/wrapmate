@@ -1,9 +1,13 @@
 @import "variables";
 body{
+  margin-top: 0px !important;
   font-family: $primary-font !important;
 }
 .form-group{
   margin-bottom: 30px;
+}
+.section{
+  margin: 0px 15px;
 }
 .form-control{
   background-color: transparent;
@@ -16,7 +20,12 @@ body{
     box-shadow: none;
   }
 }
-.container{
+.i-frame{
+  width: 100%;
+  border: none !important;
+  min-height: 100vh;
+}
+.my-container{
   max-width: 85%;
   width: 85%;
 }
@@ -30,16 +39,7 @@ body{
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
 }
-.scrolled{
-  animation: showNavbar;
-  animation-duration: 300ms;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-out;
-  width: 100%;
-  z-index: 100000;
-  position: fixed;
-  top: 0px;
-}
+
 @keyframes hideNavbar{
   0%{
     top: 0px;
@@ -60,17 +60,31 @@ body{
     opacity: 1;
   }
 }
+.text-grey{
+  color: #6e6e6e;
+}
 .navbar{
-  -webkit-box-shadow: 0px 4px 24px -8px rgba(0,0,0,0.3) !important;
-  -moz-box-shadow: 0px 4px 24px -8px rgba(0,0,0,0.3) !important;
-  box-shadow: 0px 4px 24px -8px rgba(0,0,0,0.3) !important;
+  .navbar-brand{
+    color: $black-color !important;
+    text-decoration: none !important;
+  }
+  width: 100%;
+  z-index: 100000000;
+  position: fixed;
+  top: 0px;
+  background-color: transparent;
+  padding-bottom: 20px !important;
+  padding-top: 50px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  box-shadow: none !important;
+  transition: all 350ms;
   .navbar-nav{
-    margin-top: 15px !important;
   }
   display: flex;
   flex-wrap: wrap;
   .logo{
-    max-width: 150px;
+    max-width: 40px;
   }
   .nav-item{
     .active{
@@ -87,21 +101,73 @@ body{
   }
 }
 $banner-height: 700px;
-
+.scrolled{
+  /*  animation: showNavbar;
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;*/
+  width: 100%;
+  padding-top: 20px !important;
+  background-color: white !important;
+}
+.before-header{
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding: 20px 0px 10px 0px;
+  text-align: center;
+  margin-bottom: 0px !important;
+}
+.header{
+  text-align: center;
+  padding: 25px 0px;
+  font-weight: 800;
+  font-size: 2rem;
+}
 .give-me-space{
-  padding: 60px 0px;
+  padding: 80px 0px;
 }
 .banner-section{
+  .absolute-image{
+    bottom: 5vh;
+    img{
+      transform: scale(1.2);
+    }
+    position: absolute;
+    right: 0px;
+  }
+  .banner-holder{
+    overflow: hidden;
+    position: relative;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    .banner-content{
+      width: 100%;
+      color: $black-color;
+      p,a,span,h1,h2,h3{
+        color: $black-color;
+      }
+    }
+  }
+  padding: 15px !important;
   h1, h2{
-    font-weight: bold;
-    letter-spacing: 2px;
-    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 0px;
+    font-size: 3.5rem;
+  }
+  p{
+    font-size: 2.5rem !important;
+    margin: 20px 0px !important;
   }
   h2{
     font-weight: normal;
-    font-size: 2.5rem;
+    font-size: 1.3rem;
   }
-  height: $banner-height;
+  height: 100vh;
   img{
     max-height: $banner-height;
     max-width: 100%;
@@ -118,6 +184,36 @@ $banner-height: 700px;
     position: absolute;
   }
 }
+.pagination{
+  .page-item{
+    border-radius: 0px !important;
+    transition: all 350ms;
+    a, span{
+      text-decoration: none !important;
+      border-radius: 0px !important;
+      color: $black-color !important;
+      padding: 10px 15px !important;
+      background-color: transparent !important;
+    }
+    &:hover{
+      a, span{
+        border-color: transparent !important;
+        background-color: $primary-color !important;
+        color: $white-color !important;
+      }
+    }
+    .active{
+      a,span{
+        border-color: transparent !important;
+        background-color: $primary-color !important;
+        color: $white-color !important;
+      }
+    }
+  }
+}
+.banner-page{
+  height: 45vh !important;
+}
 .image-section{
   &:hover{
     img{
@@ -132,30 +228,12 @@ $banner-height: 700px;
   overflow: hidden;
   background-color: $primary-color;
 }
-.banner-section-left{
-  img{
+.banner-section-left {
+  img {
     margin-left: auto;
   }
 }
-.md-ripple{
-  background-color: transparent !important;
-  transition: all 300ms;
-  &:hover{
-    background-color: $black-color !important;
-    color: $body-bg !important;
-  }
-  padding: 16px 40px !important;
-}
-.my-button{
-  border: 1px solid $black-color !important;
-  color: $black-color !important;
-  background-color: $body-bg !important;
-  border-radius: 0px !important;
-  text-decoration: none !important;
-  box-shadow: none !important;
-  transition: all 300ms;
-  font-weight: 200;
-}
+
 
 .my-select{
   background-color: transparent;
@@ -167,11 +245,28 @@ $banner-height: 700px;
   background-color: $primary-color;
 }
 .footer{
-  border-top: 1px solid $black-color;
   padding: 50px 0px;
   .footer-link{
     min-height: 60px;
     font-size: 1.1rem;
+  }
+  ul{
+    padding-left: 0px !important;
+    text-decoration: none;
+    list-style: none;
+    li{
+      padding: 5px 8px;
+      color: #6e6e6e;
+      a{
+        text-decoration: none !important;
+        transition: all 350ms;
+        &:hover{
+          text-decoration: none !important;
+          opacity: 0.6;
+        }
+        color: #6e6e6e !important;
+      }
+    }
   }
 }
 
@@ -215,7 +310,7 @@ $banner-height: 700px;
   a{
     transition: all 300ms;
     text-decoration: none !important;
-    color: black !important;
+    color: $black-color !important;
     &:hover{
       opacity: 0.7 !important;
       background-color: transparent !important;
@@ -273,7 +368,9 @@ $banner-height: 700px;
   }
 }
 .social-link{
+  margin-right: 25px;
   transition: all 300ms;
+  cursor: pointer;
   &:hover{
     opacity: 0.5;
   }
@@ -285,21 +382,35 @@ $banner-height: 700px;
   background-color: transparent !important;
   .breadcrumb-item{
     a{
-      color: black;
+      color: $black-color;
       opacity: 0.7;
       &:hover{
         text-decoration: none;
-        color: black;
+        color: $black-color;
         opacity: 0.5;
       }
     }
   }
   .active{
     opacity: 1;
-    color: black;
+    color: $black-color;
   }
 }
-
+.gallery{
+  column-count: 3;
+  column-gap: 5px;
+  .content{
+    transition: all 350ms;
+    background-color: rgba(0,0,0,0.6);
+  }
+  .item{
+    &:hover{
+      .content{
+        opacity: 1 !important;
+      }
+    }
+  }
+}
 .switcher{
   transition: all 300ms;
   transform: scale(0.001);
@@ -349,4 +460,88 @@ $banner-height: 700px;
 .show-switcher{
   transform: scale(1);
   opacity: 1;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+.slideTop-enter-active, .slideTop-leave-active {
+  transition: all 350ms;
+}
+.slideTop-enter, .slideTop-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+.md-stepper-content:not(.md-active) {
+  padding: 0px 20px !important;
+}
+.no-validation{
+  margin-bottom: 0px !important;
+}
+.my-button{
+  height: unset !important;
+  border: 2px solid $black-color !important;
+  background-color: transparent !important;
+  text-decoration: none !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  transition: all 200ms !important;
+  padding: 10px 30px !important;
+  &:hover{
+    opacity: 0.8;
+  }
+}
+.background-grey{
+  background-color: $grey-color !important;
+}
+.background-white{
+  background-color: transparent;
+}
+.lighten{
+  color: #6e6e6e;
+  p,a,span,label{
+    color: #6e6e6e;
+  }
+}
+.my-card{
+  border-radius: 12px !important;
+  -webkit-box-shadow: 4px 4px 20px 0px rgba(0,0,0,0.25) !important;
+  -moz-box-shadow: 4px 4px 20px 0px rgba(0,0,0,0.25) !important;
+  box-shadow: 4px 4px 20px 0px rgba(0,0,0,0.25) !important;
+}
+
+.messages{
+  position: fixed;
+  z-index: 1000000;
+  bottom: 10vh;
+  left: 25%;
+  width: 50%;
+  .alert-danger{
+    background-color: #d63933 !important;
+  }
+  .alert-success{
+    background-color: #2d9f16 !important;
+  }
+  .alert{
+    border: none !important;
+    width: 100%;
+    padding: 20px 40px;
+    font-size: 1.2rem;
+    -webkit-box-shadow: 4px 4px 12px 0px rgba(0,0,0,0.35);
+    -moz-box-shadow: 4px 4px 12px 0px rgba(0,0,0,0.35);
+    box-shadow: 4px 4px 12px 0px rgba(0,0,0,0.35);
+    color: white;
+  }
+}
+.faq{
+  cursor: pointer;
+  .head{
+    font-size: 1.3rem;
+  }
+  color: #6e6e6e;
+  padding: 30px 16px;
+  border-top: 1px solid #dadada;
 }
