@@ -255,14 +255,6 @@
                                                     @include('voyager::bread.partials.actions', ['action' => $action])
                                                 @endif
                                             @endforeach
-                                            <form action="{{route('admin.copy')}}" method="POST">
-                                                @CSRF
-                                                <input type="hidden" name="type" value="bag_configs">
-                                                <input type="hidden" name="id" value="{{$data->id}}">
-                                                <button type="submit" title="View" class="btn btn-sm btn-warning pull-right view" style="margin-right: 5px">
-                                                    <i class="voyager-copy"></i> <span class="hidden-xs hidden-sm">Kopiuj</span>
-                                                </button>
-                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

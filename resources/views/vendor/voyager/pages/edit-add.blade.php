@@ -176,10 +176,8 @@
         }
 
         $('document').ready(function () {
-            $('input[name=slug]').on('input', function(){
-/*
+            $('input[name=title]').on('input', function(){
                 $('input[name=slug]').val(slugify($(this).val()));
-*/
             })
             $('.toggleswitch').bootstrapToggle();
 

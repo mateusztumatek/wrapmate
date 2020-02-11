@@ -18,12 +18,39 @@ Route::group(['prefix' => 'admin'], function () {
 
 Auth::routes();
 
+
+/* PAMENT LINKS */
+    Route::post('tpay_confirm', 'OrderController@tpay_confirm')->name('tpay_confirm');
+/* END PAYMENT LINKS */
+
+
 $locale = \Illuminate\Support\Facades\App::getLocale();
 if($locale == 'pl') $locale = '';
 Route::group(['prefix' => $locale], function(){
     Route::get('/kontakt', 'HomeController@contact')->name('contact');
+    Route::get('/bank_lists', 'OrderController@getBankLists');
+    Route::get('/bank_image/{name}', function (Request $request){
+        $tmp_path = 'https://secure.tpay.com/_/g/';
+        $segments = \Illuminate\Support\Facades\Request::segments();
+        $tmp = $segments[count($segments) - 1];
+        try{
+            if(file_exists(storage_path('/app/public/banks/'.$tmp))){
+                $img = \Intervention\Image\Facades\Image::make(storage_path('app/public/banks/'.$tmp));
+            }else{
+                $img = \Intervention\Image\Facades\Image::make($tmp_path.$tmp);
+                $img->save(storage_path('app/public/banks/'.$tmp));
+            }
+        }catch(Exception $e){
+            $img = \Intervention\Image\Facades\Image::make(storage_path('/app/public/default/nophoto.png'));
+            return $img->response();
+        }
+        header('Content-Type: image/png');
+        return $img->response();
+    });
     Route::get('/pliki', function (){
-       return view('iframe');
+        $page = \App\Page::where('slug', 'pliki')->first();
+
+       return view('iframe', compact('page'));
     });
     Route::post('/message', 'HomeController@message');
     Route::post('/upload/{path}', 'UploadController@upload');

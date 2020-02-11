@@ -4,6 +4,7 @@
     }else{
         $cache_name = 'gallery';
     }
+    \Illuminate\Support\Facades\Cache::forget($cache_name);
     $galleries = \Illuminate\Support\Facades\Cache::get($cache_name);
     if(!$galleries){
         $galleries = \App\Gallery::paginate(10);

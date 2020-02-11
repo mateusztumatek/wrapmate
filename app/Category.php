@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Category extends Model
 {
     protected $fillable = ['type', 'name', 'image'];
+    protected $table = 'categories';
     public function getTypeAttribute($data){
         $to_return = null;
 

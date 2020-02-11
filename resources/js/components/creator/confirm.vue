@@ -1,6 +1,7 @@
 <template>
     <div>
         <h2>Złóż zamówienie</h2>
+        <div v-if="!files || files.length == 0" class="alert alert-info">Aby złożyć zamówienie musisz wgrać jakiś projekt</div>
         <md-list>
             <md-list-item v-for="item in files">
                 <md-button class="md-primary" download :href="$root.getSrc(item.file)">Pobierz plik</md-button>
@@ -45,12 +46,41 @@
                     </md-field>
                 </div>
             </div>
-
+            <div class="my-2">
+                <md-field>
+                    <label>Wybierz typ płatności</label>
+                    <md-select v-model="order.payment_type">
+                        <md-option v-for="type in payment_types" :value="type.value">{{type.name}}</md-option>
+                    </md-select>
+                </md-field>
+            </div>
+            <div class="my-3" v-if="order.payment_type == 'tpay'">
+                <label>Wybierz Bank do płatności</label>
+                <div class="row">
+                    <div class="col-md-2" v-for="bank in banks">
+                        <md-card :class="{'md-primary': order.group_id == bank.id}" class="m-1">
+                            <md-card-header>
+                                <md-card-header-text>
+                                    <div class="md-title" style="font-size: 1rem">{{bank.name | truncate(16, '..')}}</div>
+                                </md-card-header-text>
+                            </md-card-header>
+                            <md-card-media style="width: 100%">
+                                <img :src="$root.base_url+'/bank_image/'+getImageSlug(bank)" :alt="bank.name">
+                            </md-card-media>
+                            <md-card-actions>
+                                <md-button @click="$set(order, 'group_id', bank.id)" class="md-raised md-primary">
+                                    Wybierz bank
+                                </md-button>
+                            </md-card-actions>
+                        </md-card>
+                    </div>
+                </div>
+            </div>
             <md-field>
                 <label>Uwagi do zamwienia</label>
                 <md-textarea class="w-100" v-model="order.info"></md-textarea>
             </md-field>
-            <md-button :disabled="loading" type="submit" class="md-raised md-primary">Złóż zamówienie</md-button>
+            <md-button :disabled="loading || !files || files.length == 0" type="submit" class="md-raised md-primary">Złóż zamówienie</md-button>
         </form>
         <transition-group name="fade">
             <div :key="index" v-if="errors" v-for="(er, index) in errors">
@@ -60,7 +90,8 @@
     </div>
 </template>
 <script>
-    import {storeOrder} from "../../api/order";
+    import {startDownload} from "../../utilies/helpers";
+    import {storeOrder, getBankLists} from "../../api/order";
     import {validationMixin} from 'vuelidate';
     import {
         required,
@@ -70,9 +101,12 @@
         props:{files: null, model: null},
         mixins:[validationMixin],
         data:() => {return {
+            payment_types:[{name: 'Przelew bankowy', value: 'bank'}, {name: 'Przelew online', value: 'tpay'}],
+            banks:[],
             loading: false,
             order:{
-               /* email: 'mbielak@ideashirt.pl',
+                payment_type: null,
+                /*email: 'mbielak@ideashirt.pl',
                 name: 'Mateusz Bielak',
                 city: 'Wrocław',
                 street: 'Traugutta 39',
@@ -91,7 +125,15 @@
                 street:{required},
             }
         },
+        mounted(){
+            this.getBanks();
+        },
         methods:{
+            getImageSlug(bank){
+                var parts = bank.img.split('/');
+                var lastSegment = parts.pop() || parts.pop();  // handle potential trailing slash
+                return lastSegment;
+            },
             getValidationClass (fieldName) {
                 if(this.$v){
                     const field = this.$v.order[fieldName];
@@ -101,6 +143,17 @@
                         }
                     }
                 }
+            },
+            getBanks(){
+                getBankLists().then(response => {
+                    this.banks = response;
+                   /* for(var i in this.banks){
+                        image = startDownload(this.banks[i].img);
+                        break;
+                    }*/
+                }).catch(e => {
+                   this.errors = e.response.data.errors;
+                })
             },
             save(){
                 this.loading = true;
@@ -121,6 +174,12 @@
             },
             validateOrder(){
                 this.$v.$touch();
+                if(this.order.payment_type == 'tpay' && (this.order.group_id == null || this.order.group_id == '')){
+                    this.errors = [];
+                    this.errors.push({'Bank': 'Musisz wybrać bank z listy'});
+                    setTimeout(() => {this.errors = []}, 5000);
+                    return null;
+                }
                 if(!this.$v.$invalid){
                     this.save();
                 }

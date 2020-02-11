@@ -10,7 +10,7 @@ require ('./additional');
 
 require ('./functions');
 window.Vue = require('vue');
-import { MdButton, MdContent, MdField, MdMenu, MdList, MdSpeedDial, MdIcon, MdSteppers, MdCard, MdDivider, MdCheckbox, MdEmptyState} from 'vue-material/dist/components'
+import { MdButton, MdContent, MdField, MdMenu, MdList, MdSpeedDial, MdAutocomplete, MdIcon, MdSteppers, MdCard, MdDivider, MdCheckbox, MdEmptyState} from 'vue-material/dist/components'
 import VueLazyload from 'vue-lazyload'
 import {i18n} from "./plugins/i18n";
 
@@ -33,6 +33,7 @@ Vue.use(MdCard);
 Vue.use(MdDivider);
 Vue.use(MdCheckbox);
 Vue.use(MdEmptyState);
+Vue.use(MdAutocomplete);
 import prototypes from './plugins/uploader';
 import mixins from './mixins';
 Vue.use(Vue2Filters);
@@ -56,6 +57,15 @@ Vue.mixin(mixins);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+var truncate = function(text, length, clamp){
+    clamp = clamp || '...';
+    var node = document.createElement('div');
+    node.innerHTML = text;
+    var content = node.textContent;
+    return content.length > length ? content.slice(0, length) + clamp : content;
+};
+Vue.filter('truncate', truncate);
+
 import {validationMixin} from 'vuelidate';
 import {sendMessage} from "./api/contact";
 import {

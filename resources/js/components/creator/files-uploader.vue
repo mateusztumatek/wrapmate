@@ -6,7 +6,7 @@
             </div>
             <div class="col-md-7">
                 <md-list class="md-double-line">
-                    <md-list-item v-for="sign in model.signs">
+                    <md-list-item v-for="sign in model.signs" :class="{'background-primary': files.findIndex(x => x.sign.id == sign.id) != -1}">
                         <span style="font-size: 3rem; font-weight: bold">{{sign.sign}}</span>
                         <p class="mb-0">Cena za nadruk w tej strefie: {{sign.price}}
                         <span v-if="sign.dimmensions" style="font-size: 0.8rem" class="text-grey"><br> {{sign.dimmensions}}</span>
@@ -58,9 +58,11 @@
             this.$root.$eventBus.$on('stopLoading', () => {
                 this.loading = false;
             });
+
 /*
-            this.files.push({sign: this.model.signs[0], file: '/default/example.png'});
+            this.files.push({sign: this.model.signs[0], file: '/default/autko.png'});
 */
+
         },
         methods:{
             uploadFiles(zone){

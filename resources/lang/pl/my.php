@@ -1,8 +1,5 @@
-<?php
-
-return [
-
-    'Dowiedz się więcej' => 'Dowiedz się więcej',
-    'Przejdź do sklepu online' => 'Przejdź do sklepu online'
-
-];
+<?php 
+return array (
+  'Dowiedz się więcej' => 'Zobacz więcej',
+  'Przejdź do sklepu online' => 'Idź do sklepu internetowego',
+);

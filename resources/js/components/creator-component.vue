@@ -1,6 +1,6 @@
 <template>
     <div>
-        <md-steppers :md-active-step.sync="active" md-linear>
+        <md-steppers :md-active-step.sync="active" :class="getClass" md-linear>
             <md-step id="first" md-label="Wybierz model" :md-done.sync="done.first">
                 <picker @selectModel="selectModel"></picker>
             </md-step>
@@ -31,6 +31,13 @@
                 third: false
             }
         }},
+        computed:{
+            getClass(){
+                var prop = {};
+                prop[this.active] = true;
+                return prop;
+            }
+        },
         methods:{
             selectModel(model){
                 this.model = model;

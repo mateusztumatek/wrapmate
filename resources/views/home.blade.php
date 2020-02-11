@@ -23,18 +23,21 @@
 </div>
 @if(isset($second_post) && $second_post)
     <div class="section" style="overflow: hidden;">
-        <div class="d-flex align-items-center" style="background-image: url('{{url('/storage/'.$second_post->image)}}'); background-position: center; background-repeat: no-repeat; background-size:cover; height: 650px; ">
-            <div class="w-100">
+        <div class="d-flex align-items-center flex-wrap">
+            <div class="col-md-6 p-0">
+                <img class="w-100" src="{{url('/storage/'.$second_post->image)}}" alt="Samochód">
+            </div>
+            <div class="col-md-6 p-4">
                 <div class="container">
-                    <h3 class="text-white header text-left">{{$second_post->title}}</h3>
-                    <p class="text-white" style="font-weight: 600; font-size: 1.1rem; letter-spacing: 1px; line-height: 1.6rem">{!! strip_tags($second_post->content) !!}</p>
+                    <h3 class="header text-left">{{$second_post->title}}</h3>
+                    <p class="" style="font-weight: 600; font-size: 1.1rem; letter-spacing: 1px; line-height: 1.6rem">{!! strip_tags($second_post->content) !!}</p>
                 </div>
             </div>
         </div>
     </div>
 @endif
     <div class="section background-grey" style="overflow: hidden">
-        <div class="give-me-space">
+        <div class="give-me-space" id="wycena">
             <p class="before-header">Chcesz zacząć projektować ale nie wiesz do jakiego kształtu?</p>
             <h2 class="header">Uzyskaj darmowe pliki bazowe</h2>
             <div class="container">

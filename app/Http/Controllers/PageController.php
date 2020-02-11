@@ -21,7 +21,6 @@ class PageController extends Controller
             $page = $page->translate($locale, 'pl');
         }
         if(!$page) return back()->withErrors('Strona nie zostala znaleziona');
-
         /*    BANNER CONTENT    */
         $banner = (object) array();
         $banner->title = $page->banner_title;

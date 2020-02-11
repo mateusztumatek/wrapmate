@@ -7,7 +7,7 @@ body{
   margin-bottom: 30px;
 }
 .section{
-  margin: 0px 15px;
+  margin: 0px 15px 15px 15px;
 }
 .form-control{
   background-color: transparent;
@@ -39,7 +39,9 @@ body{
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
 }
-
+.text-primary{
+  color: $primary-color !important;
+}
 @keyframes hideNavbar{
   0%{
     top: 0px;
@@ -84,7 +86,7 @@ body{
   display: flex;
   flex-wrap: wrap;
   .logo{
-    max-width: 40px;
+    max-width: 100px;
   }
   .nav-item{
     .active{
@@ -127,21 +129,23 @@ $banner-height: 700px;
   padding: 80px 0px;
 }
 .banner-section{
-  .absolute-image{
-    bottom: 5vh;
-    img{
-      transform: scale(1.2);
+  @media screen and (min-width: 1200px){
+    .absolute-image{
+      bottom: 5vh;
+      img{
+        transform: scale(1.2);
+      }
+      position: absolute;
+      right: 0px;
     }
-    position: absolute;
-    right: 0px;
   }
   .banner-holder{
     overflow: hidden;
     position: relative;
-    background-attachment: fixed;
     background-position: center;
     background-size: cover;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -507,6 +511,11 @@ $banner-height: 700px;
   }
 }
 .my-card{
+  margin: 13px !important;
+  overflow: hidden !important;
+  .md-card-header{
+    border-radius: 0px 0px 12px 12px !important;
+  }
   border-radius: 12px !important;
   -webkit-box-shadow: 4px 4px 20px 0px rgba(0,0,0,0.25) !important;
   -moz-box-shadow: 4px 4px 20px 0px rgba(0,0,0,0.25) !important;
@@ -544,4 +553,10 @@ $banner-height: 700px;
   color: #6e6e6e;
   padding: 30px 16px;
   border-top: 1px solid #dadada;
+}
+.third{
+  .md-steppers-wrapper{
+    height: unset !important;
+  }
+
 }

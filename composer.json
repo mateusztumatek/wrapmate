@@ -10,9 +10,11 @@
     "require": {
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "~6.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "spatie/laravel-backup": "^5.12",
+        "spatie/laravel-backup": "^6.7",
+        "stichoza/google-translate-php": "^4.0",
         "tcg/voyager": "^1.2",
         "tpay-com/tpay-openapi-php": "^1.0"
     },
@@ -22,7 +24,8 @@
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^7.5"
+        "phpunit/phpunit": "^7.5",
+        "tanmuhittin/laravel-google-translate": "^1.0"
     },
     "config": {
         "optimize-autoloader": true,
